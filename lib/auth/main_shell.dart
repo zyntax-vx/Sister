@@ -4,7 +4,6 @@ import 'presensi_wajah.dart';
 import 'profil.dart';
 import 'tema.dart';
 
-// Kerangka utama: Beranda & Profil + navigasi bawah
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
 
@@ -13,12 +12,11 @@ class MainShell extends StatefulWidget {
 }
 
 class _MainShellState extends State<MainShell> {
-  int _tab = 0; // 0 = beranda, 1 = profil
-
-  Widget _ikon(IconData ikon, bool aktif, VoidCallback aksi) => IconButton(
+  int _tab = 0;
+  Widget _ikon(Widget gambarIkon, VoidCallback aksi) => IconButton(
         onPressed: aksi,
         iconSize: 30,
-        icon: Icon(ikon, color: aktif ? biru : biru.withOpacity(0.5)),
+        icon: gambarIkon,
       );
 
   @override
@@ -35,18 +33,41 @@ class _MainShellState extends State<MainShell> {
           decoration: kartu(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _ikon(Icons.home_outlined, _tab == 0,
-                  () => setState(() => _tab = 0)),
-              _ikon(Icons.face, false, () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const PresensiWajah()),
-                );
-              }),
-              _ikon(Icons.account_circle_outlined, _tab == 1,
-                  () => setState(() => _tab = 1)),
+                        children: [
+              _ikon(
+                Icon(
+                  Icons.home_outlined,
+                  size: 30,
+                  color: _tab == 0 ? biru : biru.withValues(alpha: 0.5),
+                ),
+                () => setState(() => _tab = 0),
+              ),
+              _ikon(
+                Image.asset(
+                  'assets/images/scan_wajah.png',
+                  width: 50,
+                  height: 50,
+                  color: biru,
+                ),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PresensiWajah(),
+                    ),
+                  );
+                },
+              ),
+              _ikon(
+                Icon(
+                  Icons.account_circle_outlined,
+                  size: 30,
+                  color: _tab == 1 ? biru : biru.withValues(alpha: 0.5),
+                ),
+                () => setState(() => _tab = 1),
+              ),
             ],
+
           ),
         ),
       ),

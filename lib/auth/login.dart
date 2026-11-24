@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main_shell.dart';
 import 'tema.dart';
+import 'data.dart';
 
 class Masuk extends StatefulWidget {
   const Masuk({super.key});
@@ -21,19 +22,34 @@ class _MasukState extends State<Masuk> {
   }
 
   void _login() {
-    if (_nis.text.trim().isEmpty || _sandi.text.isEmpty) {
+    String nisInput = _nis.text.trim();
+    String sandiInput = _sandi.text.trim();
+
+    if (nisInput.isEmpty || sandiInput.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('NIS dan password harus diisi')),
       );
       return;
     }
-    // TODO: cek ke server. Untuk sekarang langsung masuk.
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const MainShell()),
-    );
-  }
+    try {
+      final cocok = daftarSiswa.firstWhere(
+        (s) => s.nis == nisInput && s.password == sandiInput,
+      );
+      siswaAktif = cocok;
 
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const MainShell()),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('NIS atau password salah!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
   InputDecoration _gaya(String hint) => InputDecoration(
         hintText: hint,
         filled: true,

@@ -3,14 +3,11 @@ import 'izin.dart';
 import 'jadwal.dart';
 import 'presensi_wajah.dart';
 import 'tema.dart';
+import 'data.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
-
-  // Data contoh (nanti diganti data dari server)
-  static const String nama = 'Nama';
-  static const String nis = 'NIS';
-  static const String kelas = 'Kelas';
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +44,7 @@ class Homepage extends StatelessWidget {
   }
 
   Widget _header() => Row(
-        children: const [
+        children:  [
           CircleAvatar(
             radius: 26,
             backgroundColor: Colors.white,
@@ -58,10 +55,10 @@ class Homepage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Hai,', style: TextStyle(fontSize: 13)),
-              Text(nama,
+              Text(siswaAktif?.nama ?? 'Nama',
                   style:
                       TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              Text('$nis  |  $kelas', style: TextStyle(fontSize: 12)),
+              Text('${siswaAktif?.nis ?? 'NIS'}  |  ${siswaAktif?.kelas ?? 'Kelas'}', style: TextStyle(fontSize: 12)),
             ],
           ),
         ],

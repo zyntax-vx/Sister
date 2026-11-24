@@ -46,7 +46,6 @@ class _IzinState extends State<Izin> {
       );
       return;
     }
-    // TODO: kirim ke server
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Pengajuan izin terkirim')),
     );

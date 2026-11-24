@@ -9,8 +9,6 @@ const List<Map<String, String>> dataJadwal = [
   {'mapel': 'B. JEPANG', 'jam': '12.30–13.00', 'guru': 'Nama Guru'},
   {'mapel': 'B. INGGRIS', 'jam': '13.01–14.38', 'guru': 'Nama Guru'},
 ];
-
-// Isi satu kartu jadwal (dipakai di beranda dan halaman jadwal)
 Widget kontenJadwal(Map<String, String> j) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

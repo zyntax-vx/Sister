@@ -63,7 +63,6 @@ class RingkasanPresensi extends StatelessWidget {
                 const Text('Lokasi Presensi',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(height: 6),
-                // TODO: ganti dengan lokasi GPS asli (package geolocator)
                 _info(Icons.location_on, 'Lokasi Presensi',
                     'SMK Negeri 1 Bukateja', 'Lokasi Terdeteksi'),
                 const SizedBox(height: 12),
